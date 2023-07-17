@@ -10,17 +10,32 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.0.0-beta.3",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/lodash": "^4.14.195",
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
+    "class-variance-authority": "^0.6.1",
+    "dayjs": "^1.11.9",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.7",
+    "lodash": "^4.17.21",
     "next": "13.4.7",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-markdown": "^8.0.7",
+    "react-use": "^17.4.0",
+    "tailwind-merge": "^1.13.2",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
   }
 }

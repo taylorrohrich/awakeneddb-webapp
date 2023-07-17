@@ -1,0 +1,1 @@
+Continuously sprays a total of 10 jets of water in a straight line. The line of attack can be adjusted by moving while casting. Each time a jet of water hits the same enemy, the Damage it deals increases.

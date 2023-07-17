@@ -1,0 +1,1 @@
+Summons Ivy, who will immediately cast the Vanishing Spell, defeating the first opponent she hits. The Vanishing Spell cannot defeat Witches, Wizards, or certain Boss Units, instead, it deals moderate Damage.

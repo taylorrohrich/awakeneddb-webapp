@@ -1,0 +1,1 @@
+Summons Robyn, who will immediately hit a Bludger to a target location, dealing AoE Damage and marking the enemies hit. Robyn then sends a powerful Bludger at every marked enemy. Robyn will then continue to hit the Bludger to deal AoE Damage.
