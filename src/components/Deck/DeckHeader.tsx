@@ -32,7 +32,7 @@ export function DeckHeader({ deck }: Props) {
               href={ROUTES.profileDeckEdit(deck.id)}
             >
               <div> Edit</div>
-              <FontAwesomeIcon icon={faEdit} className="w-3" />
+              <FontAwesomeIcon icon={faEdit} className="text-base" />
             </Link>
           )}
         </div>

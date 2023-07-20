@@ -22,7 +22,8 @@ export function PaginationNavigation({ page, limit, total }: Props) {
   const shouldShowPrevious = previousPage > 0;
   const shouldShowNext = page * limit < total;
   const maxPage = Math.ceil(total / limit);
-
+  const prevPageText = `Page ${previousPage}`;
+  const nextPageText = `Page ${nextPage}`;
   return (
     <div className="grid grid-cols-3 w-full">
       {shouldShowPrevious ? (
@@ -31,10 +32,10 @@ export function PaginationNavigation({ page, limit, total }: Props) {
           onClick={() => queryParams.set([["page", previousPage]], true)}
         >
           <FontAwesomeIcon
-            className="w-3 text-indigo-500"
+            className="text-base text-indigo-500"
             icon={faChevronLeft}
           />
-          <div>{`Page ${previousPage}`}</div>
+          <div>{prevPageText}</div>
         </button>
       ) : (
         <div />
@@ -45,9 +46,9 @@ export function PaginationNavigation({ page, limit, total }: Props) {
           className="flex items-center gap-1 place-self-end"
           onClick={() => queryParams.set([["page", nextPage]], true)}
         >
-          <div>{`Page ${nextPage}`}</div>
+          <div>{nextPageText}</div>
           <FontAwesomeIcon
-            className="w-3 text-indigo-500"
+            className="text-base text-indigo-500"
             icon={faChevronRight}
           />
         </button>

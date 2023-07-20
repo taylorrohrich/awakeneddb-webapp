@@ -2,12 +2,22 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Deck } from "@/components/Deck";
 import { Markdown } from "@/components/Markdown";
 import { ROUTES } from "@/constants/routes";
+import { SITE_NAME } from "@/constants/site";
 import { getDeck } from "@/services/server/deck";
 import { notFound } from "next/navigation";
 
 interface Props {
   params: {
     deckId: string;
+  };
+}
+
+export async function generateMetadata({ params: { deckId } }: Props) {
+  const deck = await getDeck({ deckId: Number(deckId) });
+  const deckName = deck ? deck.name : "Deck";
+
+  return {
+    title: `${deckName} | ${SITE_NAME}`,
   };
 }
 export default async function Page({ params: { deckId } }: Props) {

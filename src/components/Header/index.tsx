@@ -7,12 +7,14 @@ import { getProfile } from "@/services/server/profile";
 import { getUsername } from "@/helpers/getUsername";
 import { Menu } from "../Menu";
 import { Tooltip } from "../Tooltip";
+import { SITE_NAME } from "@/constants/site";
 
 const PROFILE_LINKS = [
   { href: ROUTES.profileSettings, label: "Settings" },
   { href: ROUTES.profileDeck, label: "My Decks" },
   { href: ROUTES.logout, label: "Log Out" },
 ];
+
 export async function Header() {
   const session = await getSession();
   const user = session?.user;
@@ -25,11 +27,11 @@ export async function Header() {
   }
 
   return (
-    <header className="flex gap-6 items-center px-10 font-semibold h-16 flex-shrink-0 text-lg sticky top-0 bg-white z-10 shadow-md">
+    <header className="flex gap-6 items-center px-10 font-semibold h-16 flex-shrink-0 text-lg sticky top-0 bg-white z-20 shadow-md">
       <nav className="flex-1 flex items-center gap-6">
-        <Link href={ROUTES.home} className="flex items-center gap-6">
-          <Image src={"/logo.svg"} alt="logo" width={40} height={40} />
-          <span className="hidden sm:block">Awakened DB</span>
+        <Link href={ROUTES.home} className="flex items-center gap-6 shrink-0">
+          <Image src={"/logo.svg"} alt="logo" width={30} height={30} />
+          <span className="hidden sm:block">{SITE_NAME}</span>
         </Link>
         <div className="flex items-center gap-6 ml-auto">
           <Link href={ROUTES.home}>Decks</Link>

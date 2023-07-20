@@ -31,7 +31,6 @@ export function CardImage({
   height,
   className,
 }: CardImageProps) {
-  console.log(width, height);
   return (
     <Image
       alt={alt}

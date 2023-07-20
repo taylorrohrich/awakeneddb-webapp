@@ -1,6 +1,7 @@
 export enum Category {
-  SOLO_DUEL = "Solo Duel",
-  DUO_DUEL = "Duo Duel",
-  FORBIDDEN_FOREST = "Forbidden Forest",
+  DUEL = "Duel",
+  SOLO_EXPLORATION = "Solo Exploration",
   CLASSROOM = "Classroom",
+  HAUNTED_HOLLOW = "Haunted Hollow",
+  DEATHLY_DELL = "Deathly Dell",
 }

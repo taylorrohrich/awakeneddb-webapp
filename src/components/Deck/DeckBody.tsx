@@ -23,6 +23,7 @@ function CardButton({
   if (onClick) {
     return (
       <button
+        aria-label={cardProps.name}
         onClick={onClick}
         className={twMerge(active ? "animate-grow" : undefined)}
       >

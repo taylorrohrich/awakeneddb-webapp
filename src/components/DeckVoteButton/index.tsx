@@ -29,6 +29,7 @@ export function DeckVoteButton({ userVote, deckId }: Props) {
   return (
     <Tooltip title={user ? undefined : "Sign in to vote"}>
       <button
+        aria-label="Toggle Vote"
         onClick={toggleVote}
         disabled={!user}
         className={twMerge(
@@ -36,7 +37,7 @@ export function DeckVoteButton({ userVote, deckId }: Props) {
           userVote ? "text-red-600" : "text-gray-400"
         )}
       >
-        <FontAwesomeIcon icon={faHeart} className={"w-4"} />
+        <FontAwesomeIcon icon={faHeart} className="text-base" />
       </button>
     </Tooltip>
   );

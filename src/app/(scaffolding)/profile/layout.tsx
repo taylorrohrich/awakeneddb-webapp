@@ -17,9 +17,8 @@ const links = [
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
-    <div className="h-full flex max-w-screen-xl mx-auto">
-      <SideNavigation links={links} />
-      {children}
+    <div className="h-full max-w-screen-xl mx-auto">
+      <SideNavigation links={links}>{children}</SideNavigation>
     </div>
   );
 }

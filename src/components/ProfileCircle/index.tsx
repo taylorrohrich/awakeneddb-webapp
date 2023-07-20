@@ -8,7 +8,7 @@ interface Props {
 }
 
 const getSize = cva(
-  "rounded-full uppercase bg-hufflepuffYellow-500 text-white font-bold  flex items-center justify-center",
+  "rounded-full uppercase bg-dark text-mythic font-bold  flex items-center justify-center",
   {
     variants: {
       size: {

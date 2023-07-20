@@ -32,6 +32,7 @@ export function ResourceSelect({
         const disabled = disabledIds.includes(echo.id);
         return (
           <button
+            aria-label={echo.name}
             key={echo.id}
             className="disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => onClick("echo", echo.id)}
@@ -46,6 +47,7 @@ export function ResourceSelect({
       const disabled = disabledIds.includes(card.id);
       return (
         <button
+          aria-label={card.name}
           key={card.id}
           className="disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={() => onClick(type, card.id)}

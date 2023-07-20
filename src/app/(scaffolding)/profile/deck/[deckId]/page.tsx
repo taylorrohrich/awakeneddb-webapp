@@ -1,6 +1,7 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Deckbuilder } from "@/components/Deckbuilder";
 import { ROUTES } from "@/constants/routes";
+import { SITE_NAME } from "@/constants/site";
 import { getResourceRecord } from "@/helpers/getResourceRecord";
 import { getCardList } from "@/services/server/card";
 import { getDeck } from "@/services/server/deck";
@@ -12,6 +13,16 @@ interface Props {
     deckId: string;
   };
 }
+
+export async function generateMetadata({ params: { deckId } }: Props) {
+  const deck = await getDeck({ deckId: Number(deckId) });
+  const deckName = deck ? deck.name : "Deck";
+
+  return {
+    title: `${deckName} | ${SITE_NAME}`,
+  };
+}
+
 export default async function Page({ params: { deckId } }: Props) {
   const cards = await getCardList();
   const echoes = await getEchoList();

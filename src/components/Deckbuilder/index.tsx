@@ -9,12 +9,15 @@ import { ResourceSelect } from "./ResourceSelect";
 import { Echo } from "../Echo";
 import { twMerge } from "tailwind-merge";
 import { Input } from "../Input";
-import { Select } from "../Select";
 import { Tag } from "@/types/tag";
 import { TextArea } from "../TextArea";
 import { Button } from "../Button";
 import { useAddDeck, useUpdateDeck } from "@/services/client/deck";
 import { DeckPostRequest } from "@/types/api/deck";
+import { TagSelect } from "../TagSelect";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/constants/routes";
 interface Props {
   resourceRecord: ResourceRecord;
   tags: Tag[];
@@ -29,7 +32,7 @@ export function Deckbuilder({
   deckId,
 }: Props) {
   const [state, dispatch] = useDeckbuilderReducer(initialState);
-
+  const router = useRouter();
   const deckBodyProps = useMemo(() => {
     const magicCards = state.magicCardIds.map((id) =>
       id
@@ -105,10 +108,6 @@ export function Deckbuilder({
     state.magicCardIds,
   ]);
 
-  const tagOptions = useMemo(
-    () => tags.map(({ id, name }) => ({ id, name })),
-    [tags]
-  );
   const addDeck = useAddDeck();
   const updateDeck = useUpdateDeck();
   const isValidDeck = useMemo(() => {
@@ -134,37 +133,61 @@ export function Deckbuilder({
   ]);
 
   const submitDeck = useCallback(async () => {
-    const { name, description, tagId, echoId, magicCardIds, companionCardIds } =
-      state as DeckState;
-    const body = {
-      name: name,
-      description: description,
-      tagId: tagId,
-      echoId: echoId,
-      magicCardOneId: magicCardIds[0],
-      magicCardTwoId: magicCardIds[1],
-      magicCardThreeId: magicCardIds[2],
-      magicCardFourId: magicCardIds[3],
-      magicCardFiveId: magicCardIds[4],
-      magicCardSixId: magicCardIds[5],
-      magicCardSevenId: magicCardIds[6],
-      magicCardEightId: magicCardIds[7],
-      companionCardOneId: companionCardIds[0],
-      companionCardTwoId: companionCardIds[1],
-      companionCardThreeId: companionCardIds[2],
-    } as DeckPostRequest;
-    if (deckId) {
-      updateDeck(deckId, body);
-    } else {
-      addDeck(body);
+    const isUpdate = deckId != null;
+    try {
+      const {
+        name,
+        description,
+        tagId,
+        echoId,
+        magicCardIds,
+        companionCardIds,
+      } = state as DeckState;
+      const body = {
+        name: name,
+        description: description,
+        tagId: tagId,
+        echoId: echoId,
+        magicCardOneId: magicCardIds[0],
+        magicCardTwoId: magicCardIds[1],
+        magicCardThreeId: magicCardIds[2],
+        magicCardFourId: magicCardIds[3],
+        magicCardFiveId: magicCardIds[4],
+        magicCardSixId: magicCardIds[5],
+        magicCardSevenId: magicCardIds[6],
+        magicCardEightId: magicCardIds[7],
+        companionCardOneId: companionCardIds[0],
+        companionCardTwoId: companionCardIds[1],
+        companionCardThreeId: companionCardIds[2],
+      } as DeckPostRequest;
+      let result: Response | undefined;
+      if (deckId) {
+        result = await updateDeck(deckId, body);
+      } else {
+        result = await addDeck(body);
+      }
+      if (result.ok) {
+        toast.success(`Deck ${isUpdate ? "updated" : "added"}`);
+        router.push(ROUTES.profileDeck);
+      } else {
+        const body = await result.json();
+        if (body?.errors?.length === 1) {
+          toast.error(body.errors[0]);
+        } else {
+          toast.error(`Error ${isUpdate ? "updating" : "adding"} deck`);
+        }
+      }
+    } catch {
+      toast.error(`Error ${isUpdate ? "updating" : "adding"} deck`);
     }
-  }, [state, deckId, updateDeck, addDeck]);
+  }, [deckId, state, updateDeck, addDeck, router]);
 
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-6">
           <button
+            aria-label={selectedEchoInfo?.name ?? "Empty Echo"}
             className={twMerge(
               state.inProgress && state.activeType === "echo"
                 ? "animate-grow"
@@ -218,12 +241,12 @@ export function Deckbuilder({
               <label className="font-semibold text-lg" htmlFor="tag-select">
                 Tag
               </label>
-              <Select
-                id="tag-selct"
-                value={state.tagId}
-                options={tagOptions}
+              <TagSelect
+                id="tag-select"
+                tagId={state.tagId}
+                tags={tags}
                 onChange={(id) => {
-                  dispatch({ type: "update-tag", tagId: id });
+                  dispatch({ type: "update-tag", tagId: id as number });
                 }}
               />
             </div>

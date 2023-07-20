@@ -10,9 +10,19 @@ import { getFileName } from "@/helpers/getFileName";
 import { ROUTES } from "@/constants/routes";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { getResourcePath } from "@/helpers/getResourcePath";
+import { SITE_NAME } from "@/constants/site";
 
 interface Props {
   params: { cardId: string };
+}
+
+export async function generateMetadata({ params: { cardId } }: Props) {
+  const card = await getCard({ cardId: Number(cardId) });
+  const cardName = card ? card.name : "Card";
+
+  return {
+    title: `${cardName} | ${SITE_NAME}`,
+  };
 }
 
 export default async function Page({ params: { cardId } }: Props) {

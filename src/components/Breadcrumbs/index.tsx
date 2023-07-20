@@ -14,7 +14,7 @@ export function Breadcrumbs({ crumbs, title }: Props) {
       {crumbs.map((crumb) => (
         <React.Fragment key={crumb.href}>
           <Link href={crumb.href}>{crumb.title}</Link>
-          <FontAwesomeIcon icon={faChevronRight} className="h-3" />
+          <FontAwesomeIcon icon={faChevronRight} className="text-base" />
         </React.Fragment>
       ))}
       <div>{title}</div>

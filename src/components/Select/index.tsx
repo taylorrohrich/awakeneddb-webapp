@@ -1,11 +1,17 @@
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { groupBy } from "lodash";
 import { useMemo, useRef, useState } from "react";
 import { useClickAway } from "react-use";
 import { twMerge } from "tailwind-merge";
 
-interface Props<T extends string | number | undefined> {
-  options: { id: T; name: string }[];
+type Option<T> = {
+  id: T;
+  name: string;
+  group?: string;
+};
+interface Props<T> {
+  options: Option<T>[];
   value?: T;
   placeholder?: string;
   onChange: (id: T) => void;
@@ -14,7 +20,7 @@ interface Props<T extends string | number | undefined> {
   label?: string;
 }
 
-export function Select<T extends string | number | undefined>({
+export function Select<T extends undefined | number>({
   options,
   value,
   onChange,
@@ -29,13 +35,30 @@ export function Select<T extends string | number | undefined>({
   useClickAway(ref, () => {
     setOpen(false);
   });
+
+  const parsedOptions = useMemo(() => {
+    const groupedOptions = groupBy(options, "group");
+    const resultingOptions: (Option<T> | string)[] = [];
+    Object.keys(groupedOptions).forEach((groupName) => {
+      if (groupName !== "undefined") {
+        resultingOptions.push(groupName);
+      }
+      groupedOptions[groupName].forEach((option) => {
+        resultingOptions.push(option);
+      });
+    });
+
+    return resultingOptions;
+  }, [options]);
+
   const selectedOption = useMemo(
     () => options.find(({ id }) => id === value),
     [options, value]
   );
   return (
-    <div className={twMerge("relative", className)} id={id} aria-label={label}>
+    <div className={twMerge("relative", className)} aria-label={label}>
       <button
+        id={id}
         onClick={() => setOpen((open) => !open)}
         type="button"
         className="flex px-2 py-1 items-center justify-between gap-2 w-full cursor-default rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -43,9 +66,13 @@ export function Select<T extends string | number | undefined>({
         aria-expanded={open}
       >
         <span className={twMerge(selectedOption?.name ? "" : "text-gray-400")}>
-          {selectedOption?.name ?? placeholder}
+          {selectedOption?.name
+            ? `${selectedOption?.group ? selectedOption.group + " | " : ""}${
+                selectedOption.name
+              }`
+            : placeholder}
         </span>
-        <FontAwesomeIcon icon={faChevronDown} className="w-3" />
+        <FontAwesomeIcon icon={faChevronDown} className="text-sm" />
       </button>
       {open && (
         <ul
@@ -55,21 +82,32 @@ export function Select<T extends string | number | undefined>({
           role="listbox"
           aria-activedescendant={`${id}-option-${value}`}
         >
-          {options.map(({ id, name }) => {
-            const selected = id === value;
+          {parsedOptions.map((option) => {
+            if (typeof option === "string")
+              return (
+                <li
+                  key={option}
+                  role="option"
+                  className="font-semibold p-1 px-2"
+                  aria-selected={false}
+                >
+                  {option}
+                </li>
+              );
+            const selected = option.id === value;
             return (
               <li
                 onClick={() => {
-                  onChange(id);
+                  onChange(option.id);
                   setOpen(false);
                 }}
-                key={id ?? name}
-                className="text-gray-900 relative cursor-default select-none p-1 px-2 hover:bg-gray-100 aria-selected:text-indigo-500 border-b aria-selected:border-indigo-500 last:border-none"
-                id={`${id}-option-${id}`}
+                key={option.id ?? option.name}
+                className="text-gray-900 relative cursor-default select-none p-1 px-2 hover:bg-gray-100 aria-selected:bg-indigo-100"
+                id={`${id}-option-${option.id}`}
                 aria-selected={selected}
                 role="option"
               >
-                {name}
+                {option.name}
               </li>
             );
           })}

@@ -7,9 +7,19 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { getEcho } from "@/services/server/echo";
 import { Echo } from "@/components/Echo";
 import { getResourcePath } from "@/helpers/getResourcePath";
+import { SITE_NAME } from "@/constants/site";
 
 interface Props {
   params: { echoId: string };
+}
+
+export async function generateMetadata({ params: { echoId } }: Props) {
+  const echo = await getEcho({ echoId: Number(echoId) });
+  const echoName = echo ? echo.name : "Echo";
+
+  return {
+    title: `${echoName} | ${SITE_NAME}`,
+  };
 }
 
 export default async function Page({ params: { echoId } }: Props) {

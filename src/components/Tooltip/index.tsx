@@ -9,7 +9,7 @@ interface Props extends PropsWithChildren {
 }
 
 const getTooltipPosition = cva(
-  "text-base font-normal absolute z-20 -translate-x-[50%] invisible group-active:visible group-hover:visible left-2/4 rounded-md shadow-md bg-gray-100 p-1 px-2 whitespace-nowrap",
+  "text-base font-normal absolute z-10 -translate-x-[50%] invisible group-active:visible group-hover:visible left-2/4 rounded-md shadow-md bg-gray-100 p-1 px-2 whitespace-nowrap",
   {
     variants: {
       anchor: {
@@ -22,7 +22,7 @@ const getTooltipPosition = cva(
     },
   }
 );
-export function Tooltip({ children, title, anchor = "bottom" }: Props) {
+export function Tooltip({ children, title, anchor = "top" }: Props) {
   if (!title) return children;
   return (
     <div className="relative flex group">

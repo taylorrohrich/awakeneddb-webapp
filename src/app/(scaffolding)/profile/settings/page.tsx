@@ -4,6 +4,12 @@ import { getUsername } from "@/helpers/getUsername";
 import { getProfile } from "@/services/server/profile";
 import { notFound } from "next/navigation";
 
+import { SITE_NAME } from "@/constants/site";
+
+export const metadata = {
+  title: `Settings | ${SITE_NAME}`,
+};
+
 export default async function Page() {
   const user = await getProfile();
   if (!user) {
@@ -13,7 +19,7 @@ export default async function Page() {
   const username = getUsername(user.house, user.nickname);
 
   return (
-    <div className="flex-1">
+    <div className="flex-1 p-6">
       <div className="border-b-2 pb-3 my-6">
         <div className="flex items-center gap-4">
           <ProfileCircle title={username} />

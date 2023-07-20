@@ -5,10 +5,10 @@ import { getTagList } from "@/services/server/tag";
 import { ROUTES } from "@/constants/routes";
 import { LinkButton } from "@/components/LinkButton";
 import { PaginatedDecks } from "@/components/PaginatedDecks";
+import { SITE_NAME } from "@/constants/site";
 
 export const metadata = {
-  title: "Home | Awakened DB",
-  description: "Popular Harry Potter: Magic Awakened Decks",
+  title: `Decks | ${SITE_NAME}`,
 };
 
 export default async function Page({

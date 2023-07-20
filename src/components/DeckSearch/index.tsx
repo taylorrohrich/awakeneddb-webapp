@@ -7,6 +7,7 @@ import { Select } from "../Select";
 import { COST_OPTIONS } from "@/constants/costOptions";
 import { Button } from "@/components/Button";
 import { useQueryParams } from "@/helpers/useQueryParams";
+import { TagSelect } from "../TagSelect";
 
 interface Props {
   duration: Duration;
@@ -44,16 +45,6 @@ export function DeckSearch({
       localTagId,
       tagId,
     ]
-  );
-  const tagOptions = useMemo(
-    () =>
-      (
-        [{ id: undefined, name: "All" }] as {
-          id: number | undefined;
-          name: string;
-        }[]
-      ).concat(tags.map(({ id, name }) => ({ id, name }))),
-    [tags]
   );
 
   const updateCostRange = useCallback(
@@ -94,7 +85,7 @@ export function DeckSearch({
           />
         </div>
         <div className="flex flex-col">
-          <label className="font-semibold text-lg">Avg. Cost</label>
+          <div className="font-semibold text-lg">Avg. Cost</div>
           <div className="flex items-center gap-1">
             <Select
               label="Avg. Cost Low"
@@ -117,11 +108,11 @@ export function DeckSearch({
           <label className="font-semibold text-lg" htmlFor="tag-select">
             Tag
           </label>
-          <Select
-            className="w-32"
-            id="tag-selct"
-            value={localTagId}
-            options={tagOptions}
+          <TagSelect
+            withAll
+            id="tag-select"
+            tagId={localTagId}
+            tags={tags}
             onChange={(id) => {
               setLocalTagId(id);
             }}
@@ -129,7 +120,7 @@ export function DeckSearch({
         </div>
       </div>
       <Button
-        className="text-lg"
+        className="text-lg self-center"
         disabled={!searchEnabled}
         onClick={submitSearch}
       >

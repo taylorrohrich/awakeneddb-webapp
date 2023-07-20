@@ -10,10 +10,11 @@ interface Props {
 const getTagStyle = cva("rounded px-2 py-1 text-white", {
   variants: {
     style: {
-      [Category.CLASSROOM]: "bg-ravenclawSilver-600",
-      [Category.SOLO_DUEL]: "bg-hufflepuffYellow-800",
-      [Category.DUO_DUEL]: "bg-gryffindorRed-800",
-      [Category.FORBIDDEN_FOREST]: "bg-slytherinGreen-800",
+      [Category.CLASSROOM]: "bg-parchment",
+      [Category.DUEL]: "bg-duel",
+      [Category.SOLO_EXPLORATION]: "bg-soloExploration",
+      [Category.DEATHLY_DELL]: "bg-deathlyDell",
+      [Category.HAUNTED_HOLLOW]: "bg-hauntedHollow",
     },
   },
 });

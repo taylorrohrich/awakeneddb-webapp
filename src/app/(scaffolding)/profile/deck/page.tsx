@@ -6,6 +6,12 @@ import { SearchParams } from "@/types/searchParams";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { SITE_NAME } from "@/constants/site";
+
+export const metadata = {
+  title: `My Decks | ${SITE_NAME}`,
+};
+
 export default async function Page({
   searchParams,
 }: {
@@ -22,7 +28,7 @@ export default async function Page({
           className="flex items-center gap-1"
           href={ROUTES.profileDeckAdd}
         >
-          <FontAwesomeIcon icon={faPlus} className="w-3 text-white" />
+          <FontAwesomeIcon icon={faPlus} className="text-base text-white" />
           Add Deck
         </LinkButton>
       </div>

@@ -4,14 +4,33 @@ import { User } from "@/types/user";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { useProfileUpdate } from "@/services/client/profile";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { toast } from "react-toastify";
 
 interface Props {
   user: User;
 }
 export function ProfileForm({ user }: Props) {
-  const [nickname, setNickname] = useState(user.nickname);
+  const [nickname, setNickname] = useState(user.nickname ?? "");
+  const buttonDisabled = nickname === (user.nickname ?? "");
   const updateProfile = useProfileUpdate();
+  const updateNickname = useCallback(async () => {
+    try {
+      const result = await updateProfile(nickname);
+      if (result.ok) {
+        toast.success("Profile updated");
+      } else {
+        const body = await result.json();
+        if (body?.errors?.length === 1) {
+          toast.error(body.errors[0]);
+        } else {
+          toast.error("Error updating profile");
+        }
+      }
+    } catch {
+      toast.error("Error updating profile");
+    }
+  }, [nickname, updateProfile]);
   return (
     <div className="flex items-end gap-4">
       <div>
@@ -19,12 +38,15 @@ export function ProfileForm({ user }: Props) {
           Nickname
         </label>
         <Input
+          id="nickname"
           value={nickname}
           className="w-48"
           onChange={(e) => setNickname(e.target.value)}
         />
       </div>
-      <Button onClick={() => updateProfile(nickname)}>Update</Button>
+      <Button onClick={updateNickname} disabled={buttonDisabled}>
+        Update
+      </Button>
     </div>
   );
 }

@@ -45,7 +45,11 @@ export async function serverFetch<T>(
           return result;
       }
     } else {
-      throw new Error(`${route}: ${result.status}`);
+      if (type === "raw") {
+        return result;
+      } else {
+        throw new Error(`${route}: ${result.status}`);
+      }
     }
   } catch (err) {
     console.log(err);

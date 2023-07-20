@@ -1,11 +1,25 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PaginatedDecks } from "@/components/PaginatedDecks";
 import { ROUTES } from "@/constants/routes";
+import { SITE_NAME } from "@/constants/site";
 import { getUsername } from "@/helpers/getUsername";
 import { getUserDeckList } from "@/services/server/deck";
 import { getUser } from "@/services/server/user";
 import { SearchParams } from "@/types/searchParams";
 import { notFound } from "next/navigation";
+
+export async function generateMetadata({
+  params: { userId },
+}: {
+  params: { userId: string };
+}) {
+  const user = await getUser({ userId: Number(userId) });
+  const username = user ? getUsername(user.house, user.nickname) : "User";
+
+  return {
+    title: `${username} | ${SITE_NAME}`,
+  };
+}
 
 export default async function Page({
   params: { userId },
