@@ -9,7 +9,7 @@ export function getResourcePath(
   fileType: "markdown" | "image"
 ) {
   const extension = fileType === "markdown" ? ".md" : ".png";
-  const prefix = fileType === "markdown" ? "document" : "/image";
+  const prefix = fileType === "markdown" ? "" : "/image";
   const imageName = getFileName(name);
   switch (type) {
     case CardType.COMPANION:
