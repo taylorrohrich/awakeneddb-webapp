@@ -32,7 +32,7 @@ export default async function Page({ params: { echoId } }: Props) {
   const { id, name } = echo;
   const fileName = getFileName(name);
   const markdown = await getServerFile(
-    `public/${getResourcePath(fileName, "echo", "markdown")}`
+    getResourcePath(fileName, "echo", "markdown")
   );
   return (
     <div className="p-6 w-full">

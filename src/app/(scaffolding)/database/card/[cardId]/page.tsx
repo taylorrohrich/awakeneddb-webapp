@@ -38,7 +38,7 @@ export default async function Page({ params: { cardId } }: Props) {
   const fileName = getFileName(name);
   const type = getCardAggregateType(types.map(({ name }) => name));
   const markdown = await getServerFile(
-    `public/${getResourcePath(fileName, type, "markdown")}`
+    getResourcePath(fileName, type, "markdown")
   );
 
   return (

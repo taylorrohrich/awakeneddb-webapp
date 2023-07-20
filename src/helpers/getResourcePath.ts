@@ -9,14 +9,14 @@ export function getResourcePath(
   fileType: "markdown" | "image"
 ) {
   const extension = fileType === "markdown" ? ".md" : ".png";
-  const prefix = fileType === "markdown" ? "document" : "image";
+  const prefix = fileType === "markdown" ? "document" : "/image";
   const imageName = getFileName(name);
   switch (type) {
     case CardType.COMPANION:
-      return `/${prefix}/companion/${imageName}${extension}`;
+      return `${prefix}/companion/${imageName}${extension}`;
     case CardType.MAGIC:
-      return `/${prefix}/magic/${imageName}${extension}`;
+      return `${prefix}/magic/${imageName}${extension}`;
     case "echo":
-      return `/${prefix}/echo/${imageName}${extension}`;
+      return `${prefix}/echo/${imageName}${extension}`;
   }
 }
