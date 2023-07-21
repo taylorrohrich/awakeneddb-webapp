@@ -72,7 +72,7 @@ export function DeckSearch({
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-row items-end gap-8 px-3 py-1 ">
+      <div className="flex items-row items-end justify-center gap-y-2 gap-x-8 px-3 py-1 flex-wrap">
         <div className="flex flex-col">
           <label className="font-semibold text-lg" htmlFor="time-select">
             Time

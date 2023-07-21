@@ -12,7 +12,11 @@ import { Input } from "../Input";
 import { Tag } from "@/types/tag";
 import { TextArea } from "../TextArea";
 import { Button } from "../Button";
-import { useAddDeck, useUpdateDeck } from "@/services/client/deck";
+import {
+  useAddDeck,
+  useDeleteDeck,
+  useUpdateDeck,
+} from "@/services/client/deck";
 import { DeckPostRequest } from "@/types/api/deck";
 import { TagSelect } from "../TagSelect";
 import { toast } from "react-toastify";
@@ -110,6 +114,7 @@ export function Deckbuilder({
 
   const addDeck = useAddDeck();
   const updateDeck = useUpdateDeck();
+  const deleteDeck = useDeleteDeck();
   const isValidDeck = useMemo(() => {
     const isValidMagicCards = !state.magicCardIds.some((id) => id == null);
     const isValidCompanionCards = !state.companionCardIds.some(
@@ -169,6 +174,7 @@ export function Deckbuilder({
       if (result.ok) {
         toast.success(`Deck ${isUpdate ? "updated" : "added"}`);
         router.push(ROUTES.profileDeck);
+        router.refresh();
       } else {
         const body = await result.json();
         if (body?.errors?.length === 1) {
@@ -181,6 +187,18 @@ export function Deckbuilder({
       toast.error(`Error ${isUpdate ? "updating" : "adding"} deck`);
     }
   }, [deckId, state, updateDeck, addDeck, router]);
+
+  const onDelete = useCallback(async () => {
+    if (!deckId) return;
+    const result = await deleteDeck(deckId);
+    if (result.ok) {
+      toast.success("Deck deleted");
+      router.push(ROUTES.profileDeck);
+      router.refresh();
+    } else {
+      toast.error("Error deleting deck");
+    }
+  }, [deckId, deleteDeck, router]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -268,13 +286,19 @@ export function Deckbuilder({
               }}
             />
           </div>
-          <Button
-            className="ml-auto"
-            onClick={submitDeck}
-            disabled={!isValidDeck}
-          >
-            Submit
-          </Button>
+          <div className="flex justify-end gap-3">
+            {deckId && (
+              <Button
+                className="bg-red-600 hover:bg-red-300"
+                onClick={onDelete}
+              >
+                Delete
+              </Button>
+            )}
+            <Button onClick={submitDeck} disabled={!isValidDeck}>
+              {deckId ? "Update" : "Submit"}
+            </Button>
+          </div>
         </>
       )}
     </div>

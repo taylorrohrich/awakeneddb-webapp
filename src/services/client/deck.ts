@@ -45,3 +45,13 @@ export function useUpdateDeck() {
 
   return updateDeck;
 }
+
+export function useDeleteDeck() {
+  const updateDeck = useCallback(async (deckId: number) => {
+    return fetch(`/api${API_ROUTES.deckDelete(deckId)}`, {
+      method: "DELETE",
+    });
+  }, []);
+
+  return updateDeck;
+}

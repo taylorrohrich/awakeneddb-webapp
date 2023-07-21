@@ -24,3 +24,23 @@ export async function PUT(
   }
   return response;
 }
+
+export async function DELETE(
+  _: Request,
+  { params: { deckId } }: { params: { deckId: string } }
+) {
+  const response = await serverFetch(API_ROUTES.deckDelete(Number(deckId)), {
+    type: "raw",
+    init: {
+      method: "DELETE",
+    },
+  });
+
+  if (!response) {
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+  return response;
+}

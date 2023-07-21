@@ -13,7 +13,7 @@ import {
 } from "react";
 import { useMedia } from "react-use";
 import { twMerge } from "tailwind-merge";
-import { useIsClient } from "../Deckbuilder/hooks";
+import { useIsClient } from "../../helpers/hooks";
 
 interface Props extends PropsWithChildren {
   links: {
