@@ -27,7 +27,7 @@ export async function Header() {
   }
 
   return (
-    <header className="flex gap-6 items-center px-10 font-semibold h-16 flex-shrink-0 text-lg sticky top-0 bg-white z-20 shadow-md">
+    <header className="flex gap-6 items-center px-4 sm:px-10 font-semibold h-16 flex-shrink-0 text-lg sticky top-0 bg-white z-20 shadow-md">
       <nav className="flex-1 flex items-center gap-6">
         <Link href={ROUTES.home} className="flex items-center gap-6 shrink-0">
           <Image src={"/logo.svg"} alt="logo" width={30} height={30} />
