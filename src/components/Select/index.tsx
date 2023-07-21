@@ -77,7 +77,7 @@ export function Select<T extends undefined | number>({
       {open && (
         <ul
           ref={ref}
-          className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-sm bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="absolute z-10 mt-1 max-h-56 min-w-full overflow-auto rounded-sm bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           tabIndex={-1}
           role="listbox"
           aria-activedescendant={`${id}-option-${value}`}
