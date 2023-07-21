@@ -28,7 +28,7 @@ export default async function Page({ params: { deckId } }: Props) {
   const echoes = await getEchoList();
   const tags = await getTagList();
   const deck = await getDeck({ deckId: Number(deckId) });
-  if (!deck) {
+  if (!deck || !deck.isUserDeck) {
     notFound();
   }
 
