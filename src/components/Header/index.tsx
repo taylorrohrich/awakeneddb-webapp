@@ -34,10 +34,14 @@ export async function Header() {
           <span className="hidden sm:block">{SITE_NAME}</span>
         </Link>
         <div className="flex items-center gap-6 ml-auto">
-          <Link href={ROUTES.home}>Decks</Link>
+          <Link href={ROUTES.home} className="hidden sm:block">
+            Decks
+          </Link>
           <Link href={ROUTES.cards}>Database</Link>
           {user ? (
-            <Link href={ROUTES.profileDeckAdd}>Add Deck</Link>
+            <Link href={ROUTES.profileDeckAdd} className="hidden sm:block">
+              Add Deck
+            </Link>
           ) : (
             <Tooltip title="Sign in to create a deck" anchor="bottom">
               <div className="text-gray-400 cursor-not-allowed">Add Deck</div>

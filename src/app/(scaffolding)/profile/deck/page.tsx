@@ -21,7 +21,7 @@ export default async function Page({
 
   const result = await getProfileDeckList({ page, limit });
   return (
-    <div className="p-6 mx-auto flex flex-col gap-6 flex-1">
+    <div className="p-6 flex flex-col gap-6 flex-1">
       <div className="flex items-center justify-between border-b-2 pb-3">
         <h1 className="font-bold text-4xl">My Decks</h1>
         <LinkButton
