@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 const inter = EB_Garamond({ subsets: ["latin"] });
 
 import { SITE_NAME } from "@/constants/site";
+import { GAScript } from "./scripts";
 
 export const metadata = {
   title: SITE_NAME,
@@ -26,6 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <GAScript />
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
