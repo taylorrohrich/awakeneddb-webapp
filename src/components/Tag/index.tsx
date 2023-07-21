@@ -20,6 +20,8 @@ const getTagStyle = cva("rounded px-2 py-1 text-white", {
 });
 export function Tag({ title, category }: Props) {
   return (
-    <div className={twMerge(getTagStyle({ style: category }))}>{title}</div>
+    <div className={twMerge(getTagStyle({ style: category }))}>
+      {category} | {title}
+    </div>
   );
 }

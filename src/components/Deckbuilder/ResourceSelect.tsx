@@ -1,8 +1,9 @@
 import { CardType } from "@/types/cardType";
 import { ResourceRecord } from "@/types/resourceRecord";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Echo } from "../Echo";
 import { Card } from "../Card";
+import { Input } from "../Input";
 
 interface Props {
   resourceRecord: ResourceRecord;
@@ -20,13 +21,20 @@ export function ResourceSelect({
   onClick,
   disabledIds,
 }: Props) {
+  const [searchText, setSearchText] = useState("");
   const resourceItems = useMemo(() => {
-    const resourceInfo = Object.entries(resourceRecord[type]).map(
+    const searchTextLower = searchText.toLowerCase();
+    let resourceInfo = Object.entries(resourceRecord[type]).map(
       ([id, name]) => ({
         id: Number(id),
         name,
       })
     );
+    if (searchText) {
+      resourceInfo = resourceInfo.filter(({ name }) =>
+        name.toLowerCase().includes(searchTextLower)
+      );
+    }
     if (type === "echo") {
       return resourceInfo.map((echo) => {
         const disabled = disabledIds.includes(echo.id);
@@ -62,13 +70,20 @@ export function ResourceSelect({
         </button>
       );
     });
-  }, [disabledIds, onClick, resourceRecord, type]);
+  }, [disabledIds, onClick, resourceRecord, searchText, type]);
 
   return (
     <>
-      <h2 className="font-bold text-2xl text-quill capitalize">
+      <h2 className="font-bold text-2xl text-quill capitalize mb-3">
         Select {type}
       </h2>
+      <Input
+        className="w-48"
+        aria-label={`Search for ${type}`}
+        placeholder={`Search for ${type}`}
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+      />
       <div className="p-6 grid gap-2 grid-cols-[repeat(auto-fill,80px)] w-full justify-center">
         {resourceItems}
       </div>
