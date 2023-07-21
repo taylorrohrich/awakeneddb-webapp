@@ -5,7 +5,7 @@ import { PropsWithChildren, useRef, useState } from "react";
 import { useClickAway } from "react-use";
 
 interface Props extends PropsWithChildren {
-  links: { label: string; href: string }[];
+  links: { label: string; href: string; prefetch?: boolean }[];
 }
 
 export function Menu({ links, children }: Props) {
@@ -37,8 +37,9 @@ export function Menu({ links, children }: Props) {
           aria-labelledby="menu-button"
           tabIndex={-1}
         >
-          {links.map(({ label, href }, i) => (
+          {links.map(({ label, href, prefetch }, i) => (
             <Link
+              prefetch={prefetch ?? true}
               onClick={() => setIsOpen(false)}
               key={label}
               href={href}

@@ -12,7 +12,7 @@ import { SITE_NAME } from "@/constants/site";
 const PROFILE_LINKS = [
   { href: ROUTES.profileSettings, label: "Settings" },
   { href: ROUTES.profileDeck, label: "My Decks" },
-  { href: ROUTES.logout, label: "Log Out" },
+  { href: ROUTES.logout, label: "Log Out", prefetch: false },
 ];
 
 export async function Header() {
@@ -45,7 +45,11 @@ export async function Header() {
           )}
         </div>
         <div className="pl-6 border-l-2">
-          {!user && <Link href={ROUTES.login}>Sign In</Link>}
+          {!user && (
+            <Link href={ROUTES.login} prefetch={false}>
+              Sign In
+            </Link>
+          )}
           {user && (
             <Menu links={PROFILE_LINKS}>
               <ProfileCircle title={username} className="hover:no-underline" />
