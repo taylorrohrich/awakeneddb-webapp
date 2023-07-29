@@ -29,16 +29,17 @@ export async function Header() {
 
   return (
     <header className="font-semibold flex-shrink-0 text-lg sticky top-0 bg-white z-20 shadow-md">
-      <nav className="flex-1 flex items-center gap-6 h-16 px-4 sm:px-10">
+      <nav className="flex items-center gap-6 h-16 px-4 sm:px-10 relative">
         <MobileMenuIcon />
+
         <Link
           href={ROUTES.home}
-          className="flex items-center gap-6 shrink-0 mr-auto"
+          className="flex items-center gap-6 shrink-0 absolute left-1/2 -translate-x-1/2 sm:static sm:left-0 sm:translate-x-0"
         >
           <Image src={"/logo.svg"} alt="logo" width={30} height={30} />
           <span className="hidden sm:block">{SITE_NAME}</span>
         </Link>
-        <div className="items-center gap-6  hidden sm:flex">
+        <div className="items-center gap-6  hidden sm:flex ml-auto">
           {NAV_LINKS.map(({ href, label }) => (
             <Link key={label} href={href}>
               {label}
