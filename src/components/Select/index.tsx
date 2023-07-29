@@ -61,7 +61,7 @@ export function Select<T extends undefined | number>({
         id={id}
         onClick={() => setOpen((open) => !open)}
         type="button"
-        className="flex px-2 py-1 items-center justify-between gap-2 w-full cursor-default rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className="flex px-2 py-1 items-center justify-between gap-2 w-full cursor-default rounded-md border shadow-sm ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         aria-haspopup="listbox"
         aria-expanded={open}
       >

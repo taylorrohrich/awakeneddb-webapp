@@ -30,7 +30,7 @@ export function Cost({ cost, size = "md", className }: Props) {
         width={width}
         height={height}
       />
-      {cost && (
+      {cost != null && (
         <div
           className={twMerge(
             "absolute top-[25%]",

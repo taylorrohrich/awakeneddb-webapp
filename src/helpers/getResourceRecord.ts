@@ -26,13 +26,13 @@ export function getResourceRecord(
     echo: {},
   };
   echoes.forEach(({ id, name }) => {
-    record.echo[id] = name;
+    record.echo[id] = { name };
   });
-  magicCards.forEach(({ id, name }) => {
-    record[CardType.MAGIC][id] = name;
+  magicCards.forEach(({ id, name, cost }) => {
+    record[CardType.MAGIC][id] = { name, cost: cost as number };
   });
   companionCards.forEach(({ id, name }) => {
-    record[CardType.COMPANION][id] = name;
+    record[CardType.COMPANION][id] = { name };
   });
   return record;
 }

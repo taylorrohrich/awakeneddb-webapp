@@ -105,7 +105,7 @@ export function Card({
     />
   );
 
-  if (cost) {
+  if (cost != null) {
     card = (
       <div className={twMerge("relative", animationClassName)}>
         {card}

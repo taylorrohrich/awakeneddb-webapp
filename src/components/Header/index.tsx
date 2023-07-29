@@ -6,7 +6,6 @@ import Image from "next/image";
 import { getProfile } from "@/services/server/profile";
 import { getUsername } from "@/helpers/getUsername";
 import { Menu } from "../Menu";
-import { Tooltip } from "../Tooltip";
 import { SITE_NAME } from "@/constants/site";
 
 const PROFILE_LINKS = [
@@ -38,15 +37,9 @@ export async function Header() {
             Decks
           </Link>
           <Link href={ROUTES.cards}>Database</Link>
-          {user ? (
-            <Link href={ROUTES.profileDeckAdd} className="hidden sm:block">
-              Add Deck
-            </Link>
-          ) : (
-            <Tooltip title="Sign in to create a deck" anchor="bottom">
-              <div className="text-gray-400 cursor-not-allowed">Add Deck</div>
-            </Tooltip>
-          )}
+          <Link href={ROUTES.deckBuilder} className="hidden sm:block">
+            Deck Builder
+          </Link>
         </div>
         <div className="pl-6 border-l-2">
           {!user && (

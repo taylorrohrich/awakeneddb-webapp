@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Echo } from "../Echo";
 import { Card } from "../Card";
 import { Input } from "../Input";
+import { orderBy } from "lodash";
 
 interface Props {
   resourceRecord: ResourceRecord;
@@ -25,9 +26,9 @@ export function ResourceSelect({
   const resourceItems = useMemo(() => {
     const searchTextLower = searchText.toLowerCase();
     let resourceInfo = Object.entries(resourceRecord[type]).map(
-      ([id, name]) => ({
+      ([id, rest]) => ({
         id: Number(id),
-        name,
+        ...rest,
       })
     );
     if (searchText) {
@@ -51,7 +52,10 @@ export function ResourceSelect({
         );
       });
     }
-    return resourceInfo.map((card) => {
+    return orderBy(
+      resourceInfo as { id: number; name: string; cost: number }[],
+      "cost"
+    ).map((card) => {
       const disabled = disabledIds.includes(card.id);
       return (
         <button
@@ -73,7 +77,7 @@ export function ResourceSelect({
   }, [disabledIds, onClick, resourceRecord, searchText, type]);
 
   return (
-    <>
+    <div>
       <h2 className="font-bold text-2xl text-quill capitalize mb-3">
         Select {type}
       </h2>
@@ -87,6 +91,6 @@ export function ResourceSelect({
       <div className="p-6 grid gap-2 grid-cols-[repeat(auto-fill,80px)] w-full justify-center">
         {resourceItems}
       </div>
-    </>
+    </div>
   );
 }

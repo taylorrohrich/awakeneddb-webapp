@@ -4,7 +4,8 @@ import { Category } from "./category";
 export interface DeckMetadata {
   name: string;
   id: number;
-  avgCost?: number;
+  code: string;
+  avgCost: number;
   tagId: number;
   tagName: string;
   categoryId: number;

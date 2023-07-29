@@ -1,5 +1,5 @@
 import { API_ROUTES } from "@/constants/routes";
-import { DeckPostRequest } from "@/types/api/deck";
+import { DeckCodeGetRequest, DeckPostRequest } from "@/types/api/deck";
 import { useCallback } from "react";
 
 export function useAddVote() {
@@ -52,6 +52,31 @@ export function useDeleteDeck() {
       method: "DELETE",
     });
   }, []);
+
+  return updateDeck;
+}
+
+export function useGetDeckCode() {
+  const updateDeck = useCallback(
+    async (searchParamsObject: DeckCodeGetRequest) => {
+      const searchParams = new URLSearchParams(
+        Object.entries(searchParamsObject).map(([key, value]) => [
+          key,
+          String(value),
+        ])
+      );
+      const response = await fetch(
+        `/api${API_ROUTES.deckCodeGet}?${searchParams}`,
+        {
+          method: "GET",
+        }
+      );
+      const body: { code: string } = await response.json();
+
+      return body;
+    },
+    []
+  );
 
   return updateDeck;
 }

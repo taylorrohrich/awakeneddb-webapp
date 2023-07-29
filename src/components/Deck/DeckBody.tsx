@@ -41,28 +41,51 @@ export function DeckBody({
   activeType,
 }: Props) {
   return (
-    <div className="flex gap-2 flex-col flex-wrap md:flex-row md:gap-6">
-      <div className="grid grid-cols-[repeat(4,max-content)] md:grid-cols-[repeat(8,max-content)] gap-1">
-        {magicCards.map((cardInfo, index) => (
-          <CardButton
-            key={cardInfo?.id ?? `magic-card-${index}`}
-            withTooltip
-            withAnimation
-            {...cardInfo}
-            withLink
-            active={activeIndex === index && activeType === CardType.MAGIC}
-            onClick={
-              onClick
-                ? () => {
-                    onClick(index, CardType.MAGIC);
-                  }
-                : undefined
-            }
-            type={CardType.MAGIC}
-          />
-        ))}
+    <div className="flex flex-wrap flex-row gap-6 justify-center">
+      <div className="flex items-end gap-1 flex-wrap justify-center">
+        <div className="flex items-end gap-1">
+          {magicCards.slice(0, 4).map((cardInfo, index) => (
+            <CardButton
+              key={cardInfo?.id ?? `magic-card-${index}`}
+              withTooltip
+              withAnimation
+              {...cardInfo}
+              withLink
+              active={activeIndex === index && activeType === CardType.MAGIC}
+              onClick={
+                onClick
+                  ? () => {
+                      onClick(index, CardType.MAGIC);
+                    }
+                  : undefined
+              }
+              type={CardType.MAGIC}
+            />
+          ))}
+        </div>
+        <div className="flex items-end gap-1">
+          {magicCards.slice(4, 8).map((cardInfo, index) => (
+            <CardButton
+              key={cardInfo?.id ?? `magic-card-${index}`}
+              withTooltip
+              withAnimation
+              {...cardInfo}
+              withLink
+              active={activeIndex === index && activeType === CardType.MAGIC}
+              onClick={
+                onClick
+                  ? () => {
+                      onClick(index, CardType.MAGIC);
+                    }
+                  : undefined
+              }
+              type={CardType.MAGIC}
+            />
+          ))}
+        </div>
       </div>
-      <div className="flex items-end gap-1">
+
+      <div className="flex items-end gap-1 flex-wrap">
         {companionCards.map((cardInfo, index) => (
           <CardButton
             withTooltip

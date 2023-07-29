@@ -39,6 +39,12 @@ export function TagSelect({
   }, [tags, withAll]);
 
   return (
-    <Select id={id} value={tagId} options={tagOptions} onChange={onChange} />
+    <Select
+      id={id}
+      value={tagId}
+      options={tagOptions}
+      onChange={onChange}
+      className="min-w-[144px]"
+    />
   );
 }

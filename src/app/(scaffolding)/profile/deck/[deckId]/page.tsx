@@ -61,6 +61,7 @@ export default async function Page({ params: { deckId } }: Props) {
         title={deck.name}
       />
       <Deckbuilder
+        mode="user"
         deckId={deck.id}
         resourceRecord={resourceRecord}
         tags={tags}

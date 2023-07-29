@@ -164,3 +164,21 @@ export function useDeckbuilderReducer(initialState?: Partial<DeckState>) {
       : defaultDeckState
   );
 }
+
+export function getDeckStateIds(state: DeckState) {
+  const { echoId, magicCardIds, companionCardIds } = state as DeckState;
+  return {
+    echoId: echoId,
+    magicCardOneId: magicCardIds[0],
+    magicCardTwoId: magicCardIds[1],
+    magicCardThreeId: magicCardIds[2],
+    magicCardFourId: magicCardIds[3],
+    magicCardFiveId: magicCardIds[4],
+    magicCardSixId: magicCardIds[5],
+    magicCardSevenId: magicCardIds[6],
+    magicCardEightId: magicCardIds[7],
+    companionCardOneId: companionCardIds[0],
+    companionCardTwoId: companionCardIds[1],
+    companionCardThreeId: companionCardIds[2],
+  };
+}

@@ -1,5 +1,6 @@
 export const API_ROUTES = {
   deckListGet: "/deck/list",
+  deckCodeGet: "/deck/code",
   deckGet: (deckId: number) => `/deck/${deckId}`,
   deckPost: "/deck",
   deckPut: (deckId: number) => `/deck/${deckId}`,
@@ -28,6 +29,7 @@ export const ROUTES = {
   home: "/",
   user: (userId: number) => `/user/${userId}`,
   deck: (deckId: number) => `/deck/${deckId}`,
+  deckBuilder: "/deck/builder",
   profileSettings: "/profile/settings",
   profileDeck: "/profile/deck",
   profileDeckAdd: "/profile/deck/add",

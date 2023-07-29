@@ -20,10 +20,7 @@ export interface DeckListGetResponse extends PaginatedResponse<DeckMetadata> {
   tagId?: number;
 }
 
-export interface DeckPostRequest {
-  name: string;
-  description: string;
-  tagId: number;
+export interface DeckCodeGetRequest {
   echoId: number;
   magicCardOneId: number;
   magicCardTwoId: number;
@@ -36,6 +33,13 @@ export interface DeckPostRequest {
   companionCardOneId: number;
   companionCardTwoId: number;
   companionCardThreeId: number;
+}
+
+export interface DeckPostRequest extends DeckCodeGetRequest {
+  name: string;
+  description: string;
+  tagId: number;
+  echoId: number;
 }
 
 export interface DeckPutRequest extends DeckPostRequest {

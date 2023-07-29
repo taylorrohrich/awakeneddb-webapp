@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo } from "react";
-import { DeckState, useDeckbuilderReducer } from "./helpers";
+import { DeckState, getDeckStateIds, useDeckbuilderReducer } from "./helpers";
 import { ResourceRecord } from "@/types/resourceRecord";
 import { DeckBody } from "../Deck/DeckBody";
 import { CardType } from "@/types/cardType";
@@ -15,18 +15,24 @@ import { Button } from "../Button";
 import {
   useAddDeck,
   useDeleteDeck,
+  useGetDeckCode,
   useUpdateDeck,
 } from "@/services/client/deck";
-import { DeckPostRequest } from "@/types/api/deck";
+import { DeckCodeGetRequest, DeckPostRequest } from "@/types/api/deck";
 import { TagSelect } from "../TagSelect";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/constants/routes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { Cost } from "../Cost";
+import { LinkButton } from "../LinkButton";
 interface Props {
   resourceRecord: ResourceRecord;
   tags: Tag[];
   initialState?: Partial<DeckState>;
   deckId?: number;
+  mode: "deckbuilder" | "user";
 }
 
 export function Deckbuilder({
@@ -34,6 +40,7 @@ export function Deckbuilder({
   tags,
   initialState,
   deckId,
+  mode,
 }: Props) {
   const [state, dispatch] = useDeckbuilderReducer(initialState);
   const router = useRouter();
@@ -42,7 +49,7 @@ export function Deckbuilder({
       id
         ? {
             id,
-            name: resourceRecord.Magic[id],
+            name: resourceRecord.Magic[id].name,
           }
         : undefined
     );
@@ -50,7 +57,7 @@ export function Deckbuilder({
       id
         ? {
             id,
-            name: resourceRecord.Companion[id],
+            name: resourceRecord.Companion[id].name,
           }
         : undefined
     );
@@ -63,7 +70,7 @@ export function Deckbuilder({
   ]);
 
   const selectedEchoInfo = state.echoId
-    ? { id: state.echoId, name: resourceRecord.echo[state.echoId] }
+    ? { id: state.echoId, name: resourceRecord.echo[state.echoId].name }
     : undefined;
 
   const onClickCard = useCallback(
@@ -140,30 +147,12 @@ export function Deckbuilder({
   const submitDeck = useCallback(async () => {
     const isUpdate = deckId != null;
     try {
-      const {
-        name,
-        description,
-        tagId,
-        echoId,
-        magicCardIds,
-        companionCardIds,
-      } = state as DeckState;
+      const { name, description, tagId } = state as DeckState;
       const body = {
         name: name,
         description: description,
         tagId: tagId,
-        echoId: echoId,
-        magicCardOneId: magicCardIds[0],
-        magicCardTwoId: magicCardIds[1],
-        magicCardThreeId: magicCardIds[2],
-        magicCardFourId: magicCardIds[3],
-        magicCardFiveId: magicCardIds[4],
-        magicCardSixId: magicCardIds[5],
-        magicCardSevenId: magicCardIds[6],
-        magicCardEightId: magicCardIds[7],
-        companionCardOneId: companionCardIds[0],
-        companionCardTwoId: companionCardIds[1],
-        companionCardThreeId: companionCardIds[2],
+        ...getDeckStateIds(state),
       } as DeckPostRequest;
       let result: Response | undefined;
       if (deckId) {
@@ -200,10 +189,51 @@ export function Deckbuilder({
     }
   }, [deckId, deleteDeck, router]);
 
+  const avgCost = useMemo(() => {
+    const currentIds = state.magicCardIds.filter(
+      (id) => id != null
+    ) as number[];
+    if (!currentIds.length) return 0;
+
+    const cost = currentIds.reduce(
+      (acc, id) => acc + resourceRecord.Magic[String(id)].cost,
+      0
+    );
+    return cost / currentIds.length;
+  }, [resourceRecord.Magic, state.magicCardIds]);
+
+  const saveDeckRoute = useMemo(() => {
+    if (state.inProgress) return "";
+    const queryString = new URLSearchParams({
+      companionIds: state.companionCardIds.join(","),
+      magicIds: state.magicCardIds.join(","),
+      echoId: String(state.echoId),
+    });
+    return `${ROUTES.profileDeckAdd}?${queryString}`;
+  }, [
+    state.companionCardIds,
+    state.echoId,
+    state.inProgress,
+    state.magicCardIds,
+  ]);
+
+  const getDeckCode = useGetDeckCode();
+  const onCopy = useCallback(async () => {
+    try {
+      const result = await getDeckCode(
+        getDeckStateIds(state) as DeckCodeGetRequest
+      );
+      navigator.clipboard.writeText(result.code);
+      toast.success("Deck copied to clipboard!");
+    } catch {
+      toast.error("Error copying deck to clipbooard");
+    }
+  }, [getDeckCode, state]);
+
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-6">
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col items-center gap-2">
           <button
             aria-label={selectedEchoInfo?.name ?? "Empty Echo"}
             className={twMerge(
@@ -220,6 +250,11 @@ export function Deckbuilder({
           >
             <Echo {...selectedEchoInfo} />
           </button>
+          <div className="flex items-center gap-2 px-2 py-1 rounded-md bg-slate-700 text-white">
+            <div className="font-bold">{avgCost.toFixed(1)}</div>
+            <Cost size="sm" />
+          </div>
+
           <DeckBody
             {...deckBodyProps}
             onClick={onClickCard}
@@ -236,7 +271,7 @@ export function Deckbuilder({
           />
         )}
       </div>
-      {!state.inProgress && (
+      {!state.inProgress && mode === "user" && (
         <>
           <div className="flex gap-6 items-center items-between">
             <div>
@@ -300,6 +335,14 @@ export function Deckbuilder({
             </Button>
           </div>
         </>
+      )}
+      {!state.inProgress && mode === "deckbuilder" && (
+        <div className="flex gap-3">
+          <LinkButton href={saveDeckRoute}>Save Deck</LinkButton>
+          <Button className="flex gap-1 items-center" onClick={onCopy}>
+            <FontAwesomeIcon className="font-md" icon={faCopy} /> Copy
+          </Button>
+        </div>
       )}
     </div>
   );

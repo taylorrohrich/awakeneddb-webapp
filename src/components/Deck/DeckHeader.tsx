@@ -6,6 +6,7 @@ import { Tag } from "@/components/Tag";
 import { Cost } from "../Cost";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { CodeButton } from "../CodeButton";
 
 interface Props {
   deck: DeckMetadata;
@@ -22,19 +23,22 @@ export function DeckHeader({ deck }: Props) {
         withTooltip
       />
       <div className="flex flex-col gap-1 flex-1">
-        <div className="flex items-center gap-2 justify-between">
+        <div className="flex items-center gap-4 justify-between">
           <Link className="font-semibold text-xl" href={ROUTES.deck(deck.id)}>
             {deck.name}
           </Link>
-          {deck.isUserDeck && (
-            <Link
-              className="font-semibold text-lg flex items-center gap-1"
-              href={ROUTES.profileDeckEdit(deck.id)}
-            >
-              <div> Edit</div>
-              <FontAwesomeIcon icon={faEdit} className="text-base" />
-            </Link>
-          )}
+          <div className="flex items-center gap-4 ml-auto">
+            {deck.isUserDeck && (
+              <Link
+                className="font-semibold text-lg flex items-center gap-1"
+                href={ROUTES.profileDeckEdit(deck.id)}
+              >
+                <div> Edit</div>
+                <FontAwesomeIcon icon={faEdit} className="text-base" />
+              </Link>
+            )}
+            <CodeButton code={deck.code} />
+          </div>
         </div>
         <div className="flex items-center gap-2">
           {deck.avgCost && (

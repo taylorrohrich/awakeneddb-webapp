@@ -17,7 +17,7 @@ export function PaginatedDecks({
   return (
     <>
       <PaginationNavigation {...paginationParams} />
-      <div className="flex flex-col divide-y items-center">
+      <div className="flex flex-col divide-y w-full">
         {data.map((deck) => (
           <Deck
             key={deck.id}
