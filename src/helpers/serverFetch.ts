@@ -1,4 +1,4 @@
-import { getSession } from "@auth0/nextjs-auth0";
+import { getAccessToken, getSession } from "@auth0/nextjs-auth0";
 
 interface BaseOptions {
   init?: RequestInit;
@@ -21,8 +21,12 @@ export async function serverFetch<T>(
   route: string,
   options: RawOptions | JsonOptions = { type: "json", init: undefined }
 ) {
+  let accessToken;
   const session = await getSession();
-  const accessToken = session?.accessToken;
+  if (session) {
+    accessToken = (await getAccessToken()).accessToken;
+  }
+
   const { type, init } = options;
 
   const headers = accessToken

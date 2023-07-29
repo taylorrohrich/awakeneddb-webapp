@@ -7,6 +7,8 @@ import { getProfile } from "@/services/server/profile";
 import { getUsername } from "@/helpers/getUsername";
 import { Menu } from "../Menu";
 import { SITE_NAME } from "@/constants/site";
+import { MobileMenuDropdown, MobileMenuIcon } from "./MobileMenu";
+import { NAV_LINKS } from "./constants";
 
 const PROFILE_LINKS = [
   { href: ROUTES.profileSettings, label: "Settings" },
@@ -26,20 +28,22 @@ export async function Header() {
   }
 
   return (
-    <header className="flex gap-6 items-center px-4 sm:px-10 font-semibold h-16 flex-shrink-0 text-lg sticky top-0 bg-white z-20 shadow-md">
-      <nav className="flex-1 flex items-center gap-6">
-        <Link href={ROUTES.home} className="flex items-center gap-6 shrink-0">
+    <header className="font-semibold flex-shrink-0 text-lg sticky top-0 bg-white z-20 shadow-md">
+      <nav className="flex-1 flex items-center gap-6 h-16 px-4 sm:px-10">
+        <MobileMenuIcon />
+        <Link
+          href={ROUTES.home}
+          className="flex items-center gap-6 shrink-0 mr-auto"
+        >
           <Image src={"/logo.svg"} alt="logo" width={30} height={30} />
           <span className="hidden sm:block">{SITE_NAME}</span>
         </Link>
-        <div className="flex items-center gap-6 ml-auto">
-          <Link href={ROUTES.home} className="hidden sm:block">
-            Decks
-          </Link>
-          <Link href={ROUTES.cards}>Database</Link>
-          <Link href={ROUTES.deckBuilder} className="hidden sm:block">
-            Deck Builder
-          </Link>
+        <div className="items-center gap-6  hidden sm:flex">
+          {NAV_LINKS.map(({ href, label }) => (
+            <Link key={label} href={href}>
+              {label}
+            </Link>
+          ))}
         </div>
         <div className="pl-6 border-l-2">
           {!user && (
@@ -54,6 +58,7 @@ export async function Header() {
           )}
         </div>
       </nav>
+      <MobileMenuDropdown />
     </header>
   );
 }
