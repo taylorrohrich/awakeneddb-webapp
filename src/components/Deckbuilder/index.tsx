@@ -122,27 +122,21 @@ export function Deckbuilder({
   const addDeck = useAddDeck();
   const updateDeck = useUpdateDeck();
   const deleteDeck = useDeleteDeck();
+
   const isValidDeck = useMemo(() => {
-    const isValidMagicCards = !state.magicCardIds.some((id) => id == null);
-    const isValidCompanionCards = !state.companionCardIds.some(
-      (id) => id == null
-    );
+    const magicComplete =
+      state.magicCardIds.filter((c) => c != null).length === 8;
+    const companionComplete =
+      state.companionCardIds.filter((c) => c != null).length === 3;
+    const echoComplete = state.echoId != null;
+    return magicComplete && companionComplete && echoComplete;
+  }, [state.companionCardIds, state.echoId, state.magicCardIds]);
+
+  const isValidSubmission = useMemo(() => {
     return (
-      isValidMagicCards &&
-      isValidCompanionCards &&
-      state.tagId != null &&
-      state.echoId != null &&
-      state.name &&
-      state.description
+      isValidDeck && state.tagId != null && state.name && state.description
     );
-  }, [
-    state.companionCardIds,
-    state.description,
-    state.echoId,
-    state.magicCardIds,
-    state.name,
-    state.tagId,
-  ]);
+  }, [isValidDeck, state.description, state.name, state.tagId]);
 
   const submitDeck = useCallback(async () => {
     const isUpdate = deckId != null;
@@ -218,13 +212,25 @@ export function Deckbuilder({
   ]);
 
   const getDeckCode = useGetDeckCode();
+
   const onCopy = useCallback(async () => {
     try {
-      const result = await getDeckCode(
-        getDeckStateIds(state) as DeckCodeGetRequest
-      );
-      navigator.clipboard.writeText(result.code);
-      toast.success("Deck copied to clipboard!");
+      // Safari
+      if (typeof ClipboardItem && navigator.clipboard.write) {
+        const text = new ClipboardItem({
+          "text/plain": getDeckCode(
+            getDeckStateIds(state) as DeckCodeGetRequest
+          ).then(({ code }) => new Blob([code], { type: "text/plain" })),
+        });
+        await navigator.clipboard.write([text]);
+        toast.success("Deck copied to clipboard!");
+      } else {
+        const result = await getDeckCode(
+          getDeckStateIds(state) as DeckCodeGetRequest
+        );
+        navigator.clipboard.writeText(result.code);
+        toast.success("Deck copied to clipboard!");
+      }
     } catch {
       toast.error("Error copying deck to clipbooard");
     }
@@ -330,7 +336,7 @@ export function Deckbuilder({
                 Delete
               </Button>
             )}
-            <Button onClick={submitDeck} disabled={!isValidDeck}>
+            <Button onClick={submitDeck} disabled={!isValidSubmission}>
               {deckId ? "Update" : "Submit"}
             </Button>
           </div>
@@ -339,7 +345,11 @@ export function Deckbuilder({
       {!state.inProgress && mode === "deckbuilder" && (
         <div className="flex gap-3">
           <LinkButton href={saveDeckRoute}>Save Deck</LinkButton>
-          <Button className="flex gap-1 items-center" onClick={onCopy}>
+          <Button
+            className="flex gap-1 items-center"
+            onClick={onCopy}
+            disabled={!isValidDeck}
+          >
             <FontAwesomeIcon className="font-md" icon={faCopy} /> Copy
           </Button>
         </div>

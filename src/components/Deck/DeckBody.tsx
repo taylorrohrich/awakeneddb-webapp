@@ -66,16 +66,18 @@ export function DeckBody({
         <div className="flex items-end gap-1">
           {magicCards.slice(4, 8).map((cardInfo, index) => (
             <CardButton
-              key={cardInfo?.id ?? `magic-card-${index}`}
+              key={cardInfo?.id ?? `magic-card-${index + 4}`}
               withTooltip
               withAnimation
               {...cardInfo}
               withLink
-              active={activeIndex === index && activeType === CardType.MAGIC}
+              active={
+                activeIndex === index + 4 && activeType === CardType.MAGIC
+              }
               onClick={
                 onClick
                   ? () => {
-                      onClick(index, CardType.MAGIC);
+                      onClick(index + 4, CardType.MAGIC);
                     }
                   : undefined
               }
