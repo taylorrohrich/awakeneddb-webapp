@@ -1,4 +1,6 @@
+import { ROUTES } from "@/constants/routes";
 import { getAccessToken, getSession } from "@auth0/nextjs-auth0";
+import { redirect } from "next/navigation";
 
 interface BaseOptions {
   init?: RequestInit;
@@ -24,7 +26,13 @@ export async function serverFetch<T>(
   let accessToken;
   const session = await getSession();
   if (session) {
-    accessToken = (await getAccessToken()).accessToken;
+    try {
+      accessToken = (await getAccessToken()).accessToken;
+    } catch {
+      // If session but can't get access token, log out
+      redirect(ROUTES.logout);
+      return;
+    }
   }
 
   const { type, init } = options;
