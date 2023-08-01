@@ -40,14 +40,18 @@ export function DeckHeader({ deck }: Props) {
             <CodeButton code={deck.code} />
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
+          {deck.tierName && <Tag title={deck.tierName} style={deck.tierName} />}
           {deck.avgCost && (
             <div className="flex items-center gap-2 px-2 py-1 rounded-md bg-slate-700 text-white">
               <div className="font-bold">{deck.avgCost.toFixed(1)}</div>
               <Cost size="sm" />
             </div>
           )}
-          <Tag title={deck.tagName} category={deck.categoryName} />
+          <Tag
+            title={`${deck.categoryName} | ${deck.tagName}`}
+            style={deck.categoryName}
+          />
         </div>
       </div>
     </div>

@@ -47,7 +47,7 @@ export function TextArea({
           maxLength={maxLength}
           {...textAreaProps}
           value={value}
-          className="flex px-2 py-1 items-center justify-between gap-2 w-full cursor-default border ring-inset rounded-md shadow-sm ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder:text-gray-400"
+          className="flex px-2 py-1 items-center justify-between gap-2 w-full cursor-default border ring-inset rounded-md shadow-sm ring-gray-300 focus:outline-none focus:ring-2 focus:ring-violet-800 placeholder:text-gray-400"
         />
       )}
       {tab === "preview" && <Markdown markdown={value} />}

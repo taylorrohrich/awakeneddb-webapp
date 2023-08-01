@@ -63,8 +63,8 @@ export function SideNavigation({ links, children }: Props) {
           key={link.title}
           href={link.href}
           className={twMerge(
-            "pr-4 border-r-2 border-transparent hover:border-black text-lg font-semibold",
-            link.segment === segment ? "border-black" : undefined
+            "pr-4 border-r-2 border-transparent hover:border-dark text-lg font-semibold",
+            link.segment === segment ? "border-dark text-dark" : undefined
           )}
         >
           {link.title}

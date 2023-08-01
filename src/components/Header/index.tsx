@@ -9,6 +9,7 @@ import { Menu } from "../Menu";
 import { SITE_NAME } from "@/constants/site";
 import { MobileMenuDropdown, MobileMenuIcon } from "./MobileMenu";
 import { NAV_LINKS } from "./constants";
+import { RouteLink } from "../RouteLink";
 
 const PROFILE_LINKS = [
   { href: ROUTES.profileSettings, label: "Settings" },
@@ -37,13 +38,13 @@ export async function Header() {
           className="flex items-center gap-6 shrink-0 absolute left-1/2 -translate-x-1/2 sm:static sm:left-0 sm:translate-x-0"
         >
           <Image src={"/logo.svg"} alt="logo" width={30} height={30} />
-          <span className="hidden sm:block">{SITE_NAME}</span>
+          <span className="hidden md:block">{SITE_NAME}</span>
         </Link>
         <div className="items-center gap-6  hidden sm:flex ml-auto">
           {NAV_LINKS.map(({ href, label }) => (
-            <Link key={label} href={href}>
+            <RouteLink key={label} href={href}>
               {label}
-            </Link>
+            </RouteLink>
           ))}
         </div>
         <div className="pl-6 border-l-2">

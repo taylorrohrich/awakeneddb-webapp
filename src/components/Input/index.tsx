@@ -10,7 +10,7 @@ export function Input({
       {...inputProps}
       type="text"
       className={twMerge(
-        "flex px-2 py-1 items-center justify-between gap-2 w-full shadow-sm cursor-default border ring-inset rounded-md ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder:text-gray-400",
+        "flex px-2 py-1 items-center justify-between gap-2 w-full shadow-sm cursor-default border ring-inset rounded-md ring-gray-300 focus:outline-none focus:ring-2 focus:ring-violet-800 placeholder:text-gray-400",
         className
       )}
     />

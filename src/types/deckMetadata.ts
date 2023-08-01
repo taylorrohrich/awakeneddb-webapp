@@ -1,5 +1,6 @@
 import { CardInfo } from "./cardInfo";
 import { Category } from "./category";
+import { Tier } from "./tier";
 
 export interface DeckMetadata {
   name: string;
@@ -29,4 +30,5 @@ export interface DeckMetadata {
   companionCardOne: CardInfo;
   companionCardTwo: CardInfo;
   companionCardThree: CardInfo;
+  tierName?: Tier;
 }

@@ -23,11 +23,14 @@ export const API_ROUTES = {
   userGet: (userId: number) => `/user/${userId}`,
   profileUpdate: `/profile`,
   profileGet: `/profile`,
+  postGet: (postId: number) => `/post/${postId}`,
+  postLatestGet: "/post/latest",
 } as const;
 
 export const ROUTES = {
   home: "/",
   user: (userId: number) => `/user/${userId}`,
+  decks: "/deck",
   deck: (deckId: number) => `/deck/${deckId}`,
   deckBuilder: "/deck/builder",
   profileSettings: "/profile/settings",

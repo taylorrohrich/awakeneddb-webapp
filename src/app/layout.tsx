@@ -13,6 +13,8 @@ export const metadata = {
   description: "Popular Harry Potter: Magic Awakened Decks",
   keywords: [
     "Harry Potter: Magic Awakened",
+    "Tier List",
+    "Meta",
     "Decks",
     "Cards",
     "Echoes",

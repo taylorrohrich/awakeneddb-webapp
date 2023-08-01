@@ -61,7 +61,7 @@ export function Select<T extends undefined | number>({
         id={id}
         onClick={() => setOpen((open) => !open)}
         type="button"
-        className="flex px-2 py-1 items-center justify-between gap-2 w-full cursor-default rounded-md border shadow-sm ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className="flex px-2 py-1 items-center justify-between gap-2 w-full cursor-default rounded-md border shadow-sm ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-violet-800"
         aria-haspopup="listbox"
         aria-expanded={open}
       >
@@ -102,7 +102,7 @@ export function Select<T extends undefined | number>({
                   setOpen(false);
                 }}
                 key={option.id ?? option.name}
-                className="text-gray-900 relative cursor-default select-none p-1 px-2 hover:bg-gray-100 aria-selected:bg-indigo-100"
+                className="text-gray-900 relative cursor-default select-none p-1 px-2 hover:bg-gray-100 aria-selected:bg-violet-100"
                 id={`${id}-option-${option.id}`}
                 aria-selected={selected}
                 role="option"

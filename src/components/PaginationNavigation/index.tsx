@@ -32,7 +32,7 @@ export function PaginationNavigation({ page, limit, total }: Props) {
           onClick={() => queryParams.set([["page", previousPage]], true)}
         >
           <FontAwesomeIcon
-            className="text-base text-indigo-500"
+            className="text-base text-violet-800"
             icon={faChevronLeft}
           />
           <div>{prevPageText}</div>
@@ -48,7 +48,7 @@ export function PaginationNavigation({ page, limit, total }: Props) {
         >
           <div>{nextPageText}</div>
           <FontAwesomeIcon
-            className="text-base text-indigo-500"
+            className="text-base text-violet-800"
             icon={faChevronRight}
           />
         </button>

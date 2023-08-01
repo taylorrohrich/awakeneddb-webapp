@@ -23,6 +23,9 @@ module.exports = {
         contentBody: "calc(100vh - 8rem)",
       },
       colors: {
+        tierOne: "#ff7f7f",
+        tierTwo: "#ffbf7e",
+        tierThree: "#ffdf7e",
         duel: "#a88143",
         soloExploration: "#119bc0",
         hauntedHollow: "#8366a0",

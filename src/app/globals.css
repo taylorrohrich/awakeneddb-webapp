@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 a {
-  @apply hover:underline;
+  @apply hover:text-dark;
 }
+html {
+  @apply text-mythic;
+}
+
 body {
   min-height: 100vh;
   display: flex;

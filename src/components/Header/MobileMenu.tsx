@@ -4,9 +4,9 @@ import { useHeaderMenu } from "@/app/providers";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NAV_LINKS } from "./constants";
-import Link from "next/link";
 import { useMedia } from "react-use";
 import { useEffect } from "react";
+import { RouteLink } from "../RouteLink";
 
 export function MobileMenuDropdown() {
   const { setMenuOpen, menuOpen } = useHeaderMenu();
@@ -22,9 +22,9 @@ export function MobileMenuDropdown() {
     <div className="sm:hidden" id="mobile-menu">
       <div className="flex flex-col gap-3 p-4">
         {NAV_LINKS.map(({ href, label }) => (
-          <Link key={label} href={href} onClick={() => setMenuOpen(false)}>
+          <RouteLink key={label} href={href} onClick={() => setMenuOpen(false)}>
             {label}
-          </Link>
+          </RouteLink>
         ))}
       </div>
     </div>

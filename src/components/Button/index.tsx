@@ -13,7 +13,7 @@ export function Button({
     <button
       {...buttonProps}
       className={twMerge(
-        "py-1 px-4 bg-indigo-700 rounded-md text-white hover:bg-indigo-500 disabled:bg-slate-300",
+        "py-1 px-4 bg-violet-900  rounded-md text-white hover:bg-violet-800 disabled:bg-slate-300",
         className
       )}
     >
