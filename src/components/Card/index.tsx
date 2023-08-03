@@ -11,6 +11,7 @@ import { twMerge } from "tailwind-merge";
 const EXTENDED_HEIGHT_CARDS = [
   "/image/companion/ron_weasley.png",
   "/image/magic/crucio.png",
+  "/image/magic/obscurus.png",
   "/image/magic/avada_kedavra.png",
 ];
 
