@@ -8,15 +8,13 @@ import { twMerge } from "tailwind-merge";
 export function RouteLink({
   className,
   href,
+  re,
   ...props
-}: ComponentProps<typeof Link>) {
+}: ComponentProps<typeof Link> & { re: string }) {
   const pathname = usePathname();
   const routeActive = useMemo(() => {
-    if (href === "/") {
-      return pathname === href;
-    }
-    return pathname.startsWith(href.toString());
-  }, [href, pathname]);
+    return RegExp(re).test(pathname);
+  }, [re, pathname]);
 
   return (
     <Link

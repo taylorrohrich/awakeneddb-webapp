@@ -26,7 +26,7 @@ export function Cost({ cost, size = "md", className }: Props) {
     >
       <Image
         src="/general/cost.png"
-        alt={`Card Cost: ${cost}`}
+        alt={`Card Cost${cost != null ? ": " + cost : ""}`}
         width={width}
         height={height}
       />

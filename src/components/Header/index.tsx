@@ -41,8 +41,8 @@ export async function Header() {
           <span className="hidden md:block">{SITE_NAME}</span>
         </Link>
         <div className="items-center gap-6  hidden sm:flex ml-auto">
-          {NAV_LINKS.map(({ href, label }) => (
-            <RouteLink key={label} href={href}>
+          {NAV_LINKS.map(({ href, label, re }) => (
+            <RouteLink key={label} href={href} re={re}>
               {label}
             </RouteLink>
           ))}
