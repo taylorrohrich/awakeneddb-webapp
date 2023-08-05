@@ -21,8 +21,13 @@ export function MobileMenuDropdown() {
   return (
     <div className="sm:hidden" id="mobile-menu">
       <div className="flex flex-col gap-3 p-4">
-        {NAV_LINKS.map(({ href, label }) => (
-          <RouteLink key={label} href={href} onClick={() => setMenuOpen(false)}>
+        {NAV_LINKS.map(({ href, label, re }) => (
+          <RouteLink
+            key={label}
+            href={href}
+            onClick={() => setMenuOpen(false)}
+            re={re}
+          >
             {label}
           </RouteLink>
         ))}
