@@ -1,4 +1,5 @@
 import { API_ROUTES } from "@/constants/routes";
+import { POST } from "@/data/post";
 import { serverFetch } from "@/helpers/serverFetch";
 import { PostGetRequest, PostGetResponse } from "@/types/api/post";
 
@@ -7,5 +8,5 @@ export async function getPost({ postId }: PostGetRequest) {
 }
 
 export async function getPostLatest() {
-  return serverFetch<PostGetResponse>(API_ROUTES.postLatestGet);
+  return POST;
 }

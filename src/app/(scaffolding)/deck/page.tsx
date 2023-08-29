@@ -41,9 +41,9 @@ export default async function Page({
           <FontAwesomeIcon icon={faArrowRight} />
         </Link>
       </div>
-      <div className="p-6">
+      {/* <div className="p-6">
         <DeckSearch {...result} tags={tags} key={searchKey} />
-      </div>
+      </div> */}
       <PaginatedDecks
         {...result}
         noResultsComponent={

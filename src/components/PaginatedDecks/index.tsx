@@ -16,7 +16,7 @@ export function PaginatedDecks({
 }: Props) {
   return (
     <>
-      <PaginationNavigation {...paginationParams} />
+      {/* <PaginationNavigation {...paginationParams} /> */}
       <div className="flex flex-col divide-y w-full">
         {data.map((deck) => (
           <Deck
@@ -37,7 +37,7 @@ export function PaginatedDecks({
           )}
         </div>
       )}
-      <PaginationNavigation {...paginationParams} />
+      {/* <PaginationNavigation {...paginationParams} /> */}
     </>
   );
 }

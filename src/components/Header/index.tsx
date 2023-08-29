@@ -47,7 +47,7 @@ export async function Header() {
             </RouteLink>
           ))}
         </div>
-        <div className="pl-6 border-l-2">
+        {/* <div className="pl-6 border-l-2">
           {!user && (
             <Link href={ROUTES.login} prefetch={false}>
               Sign In
@@ -58,7 +58,7 @@ export async function Header() {
               <ProfileCircle title={username} className="hover:no-underline" />
             </Menu>
           )}
-        </div>
+        </div> */}
       </nav>
       <MobileMenuDropdown />
     </header>

@@ -1,0 +1,513 @@
+import { PostGetResponse } from "@/types/api/post";
+
+export const POST: PostGetResponse = {
+  id: 1,
+  name: "Tier List",
+  createdAt: "2023-07-30T00:00:00.000Z",
+  data: [
+    {
+      id: 61,
+      avgCost: 3,
+      code: "AK0fAZyt4gTQ8goI3Ai7CPkH+wfUCNkI9AjeCAPgD+EP6A8=",
+      tierName: "Tier 1",
+      name: "Hermione Control",
+      tagId: 1,
+      tagName: "Solo",
+      categoryId: 8,
+      categoryName: "Duel",
+      echoId: 4,
+      createdAt: "2023-07-31T23:44:23.5500000Z",
+      echoName: "Hermione Granger",
+      authorId: 4,
+      authorNickname: "tmant1234",
+      score: 0,
+      userVote: false,
+      isUserDeck: false,
+      magicCardOne: {
+        id: 70,
+        name: "Broomstick",
+      },
+      magicCardTwo: {
+        id: 4,
+        name: "Oppugno",
+      },
+      magicCardThree: {
+        id: 3,
+        name: "Expulso",
+      },
+      magicCardFour: {
+        id: 27,
+        name: "Thunderstorm",
+      },
+      magicCardFive: {
+        id: 1,
+        name: "Prior Incantato",
+      },
+      magicCardSix: {
+        id: 75,
+        name: "Incendio",
+      },
+      magicCardSeven: {
+        id: 28,
+        name: "Orb of Water",
+      },
+      magicCardEight: {
+        id: 5,
+        name: "Nebulus",
+      },
+      companionCardOne: {
+        id: 64,
+        name: "Hermione Granger",
+      },
+      companionCardTwo: {
+        id: 77,
+        name: "Minerva McGonagall",
+      },
+      companionCardThree: {
+        id: 66,
+        name: "Ron Weasley",
+      },
+    },
+    {
+      id: 62,
+      avgCost: 3.25,
+      code: "AK0fAZyt4gTQ8goIvgj7B9wIvAj5B94Iuwj4CAPgD+gP0Q8=",
+      tierName: "Tier 1",
+      name: "Hermione Kedavra",
+      tagId: 1,
+      tagName: "Solo",
+      categoryId: 8,
+      categoryName: "Duel",
+      echoId: 4,
+      createdAt: "2023-07-31T23:45:50.8800000Z",
+      echoName: "Hermione Granger",
+      authorId: 4,
+      authorNickname: "tmant1234",
+      score: 0,
+      userVote: false,
+      isUserDeck: false,
+      magicCardOne: {
+        id: 26,
+        name: "Avada Kedavra",
+      },
+      magicCardTwo: {
+        id: 27,
+        name: "Thunderstorm",
+      },
+      magicCardThree: {
+        id: 70,
+        name: "Broomstick",
+      },
+      magicCardFour: {
+        id: 69,
+        name: "Ashwinder",
+      },
+      magicCardFive: {
+        id: 3,
+        name: "Expulso",
+      },
+      magicCardSix: {
+        id: 5,
+        name: "Nebulus",
+      },
+      magicCardSeven: {
+        id: 4,
+        name: "Oppugno",
+      },
+      magicCardEight: {
+        id: 72,
+        name: "Inflatus",
+      },
+      companionCardOne: {
+        id: 64,
+        name: "Hermione Granger",
+      },
+      companionCardTwo: {
+        id: 66,
+        name: "Ron Weasley",
+      },
+      companionCardThree: {
+        id: 56,
+        name: "Cassandra Vole",
+      },
+    },
+    {
+      id: 63,
+      avgCost: 3.75,
+      code: "AN8fAZyt4gTQ8goIrAjoCIIIjgnZCLwI5gjPCQPRD+kP4g8=",
+      tierName: "Tier 1",
+      name: "Newt Summons",
+      tagId: 1,
+      tagName: "Solo",
+      categoryId: 8,
+      categoryName: "Duel",
+      echoId: 6,
+      createdAt: "2023-07-31T23:46:48.7066667Z",
+      echoName: "Newt Scamander",
+      authorId: 4,
+      authorNickname: "tmant1234",
+      score: 0,
+      userVote: false,
+      isUserDeck: false,
+      magicCardOne: {
+        id: 32,
+        name: "The Monster Book of Monsters",
+      },
+      magicCardTwo: {
+        id: 46,
+        name: "Fwoopers",
+      },
+      magicCardThree: {
+        id: 49,
+        name: "Baby Antipodean Opaleye",
+      },
+      magicCardFour: {
+        id: 31,
+        name: "Niffler",
+      },
+      magicCardFive: {
+        id: 75,
+        name: "Incendio",
+      },
+      magicCardSix: {
+        id: 69,
+        name: "Ashwinder",
+      },
+      magicCardSeven: {
+        id: 40,
+        name: "Matagot",
+      },
+      magicCardEight: {
+        id: 36,
+        name: "Bombtastic Bomb Box",
+      },
+      companionCardOne: {
+        id: 56,
+        name: "Cassandra Vole",
+      },
+      companionCardTwo: {
+        id: 63,
+        name: "Malfoy Gang",
+      },
+      companionCardThree: {
+        id: 62,
+        name: "Grawp",
+      },
+    },
+    {
+      id: 64,
+      avgCost: 3.375,
+      code: "AMsfAZyt4gTQ8goIyQiHCK8I6gesCLsI8wfPCQPoD+EP6Q8=",
+      tierName: "Tier 2",
+      name: "Hagrid Summons",
+      tagId: 1,
+      tagName: "Solo",
+      categoryId: 8,
+      categoryName: "Duel",
+      echoId: 5,
+      createdAt: "2023-07-31T23:48:08.2233333Z",
+      echoName: "Rubeus Hagrid",
+      authorId: 4,
+      authorNickname: "tmant1234",
+      score: 0,
+      userVote: false,
+      isUserDeck: false,
+      magicCardOne: {
+        id: 11,
+        name: "Stupefy",
+      },
+      magicCardTwo: {
+        id: 20,
+        name: "Confringo",
+      },
+      magicCardThree: {
+        id: 34,
+        name: "Cornish Pixies",
+      },
+      magicCardFour: {
+        id: 48,
+        name: "Piertotum Locomotor",
+      },
+      magicCardFive: {
+        id: 32,
+        name: "The Monster Book of Monsters",
+      },
+      magicCardSix: {
+        id: 4,
+        name: "Oppugno",
+      },
+      magicCardSeven: {
+        id: 2,
+        name: "Swelling Solution",
+      },
+      magicCardEight: {
+        id: 36,
+        name: "Bombtastic Bomb Box",
+      },
+      companionCardOne: {
+        id: 66,
+        name: "Ron Weasley",
+      },
+      companionCardTwo: {
+        id: 77,
+        name: "Minerva McGonagall",
+      },
+      companionCardThree: {
+        id: 63,
+        name: "Malfoy Gang",
+      },
+    },
+    {
+      id: 65,
+      avgCost: 3.625,
+      code: "AK0fAZyt4gTQ8goI8wfJCNkI8gjpB6wIrwjPCQPpD+AP6A8=",
+      tierName: "Tier 2",
+      name: "Hermione Freeze",
+      tagId: 1,
+      tagName: "Solo",
+      categoryId: 8,
+      categoryName: "Duel",
+      echoId: 4,
+      createdAt: "2023-07-31T23:49:22.7200000Z",
+      echoName: "Hermione Granger",
+      authorId: 4,
+      authorNickname: "tmant1234",
+      score: 0,
+      userVote: false,
+      isUserDeck: false,
+      magicCardOne: {
+        id: 2,
+        name: "Swelling Solution",
+      },
+      magicCardTwo: {
+        id: 11,
+        name: "Stupefy",
+      },
+      magicCardThree: {
+        id: 75,
+        name: "Incendio",
+      },
+      magicCardFour: {
+        id: 29,
+        name: "Glacius Maxima",
+      },
+      magicCardFive: {
+        id: 19,
+        name: "Glacius",
+      },
+      magicCardSix: {
+        id: 32,
+        name: "The Monster Book of Monsters",
+      },
+      magicCardSeven: {
+        id: 34,
+        name: "Cornish Pixies",
+      },
+      magicCardEight: {
+        id: 36,
+        name: "Bombtastic Bomb Box",
+      },
+      companionCardOne: {
+        id: 63,
+        name: "Malfoy Gang",
+      },
+      companionCardTwo: {
+        id: 64,
+        name: "Hermione Granger",
+      },
+      companionCardThree: {
+        id: 66,
+        name: "Ron Weasley",
+      },
+    },
+    {
+      id: 66,
+      avgCost: 3.125,
+      code: "ALcfAZyt4gTQ8goI+QfcCLsIkAjJCIgJ/QeCCAPRD+gP4Q8=",
+      tierName: "Tier 2",
+      name: "Harry Control",
+      tagId: 1,
+      tagName: "Solo",
+      categoryId: 8,
+      categoryName: "Duel",
+      echoId: 1,
+      createdAt: "2023-07-31T23:50:21.8333333Z",
+      echoName: "Harry Potter",
+      authorId: 4,
+      authorNickname: "tmant1234",
+      score: 0,
+      userVote: false,
+      isUserDeck: false,
+      magicCardOne: {
+        id: 3,
+        name: "Expulso",
+      },
+      magicCardTwo: {
+        id: 70,
+        name: "Broomstick",
+      },
+      magicCardThree: {
+        id: 4,
+        name: "Oppugno",
+      },
+      magicCardFour: {
+        id: 9,
+        name: "Expelliarmus",
+      },
+      magicCardFive: {
+        id: 11,
+        name: "Stupefy",
+      },
+      magicCardSix: {
+        id: 71,
+        name: "Bewitched Snowballs",
+      },
+      magicCardSeven: {
+        id: 16,
+        name: "Tebo",
+      },
+      magicCardEight: {
+        id: 49,
+        name: "Baby Antipodean Opaleye",
+      },
+      companionCardOne: {
+        id: 56,
+        name: "Cassandra Vole",
+      },
+      companionCardTwo: {
+        id: 66,
+        name: "Ron Weasley",
+      },
+      companionCardThree: {
+        id: 77,
+        name: "Minerva McGonagall",
+      },
+    },
+    {
+      id: 67,
+      avgCost: 4,
+      code: "AIcgAZyt4gTQ8goIywjwB44J2gj3B4cI3gjZCAPRD+gP3w8=",
+      tierName: "Tier 3",
+      name: "Neville Healing Summons",
+      tagId: 1,
+      tagName: "Solo",
+      categoryId: 8,
+      categoryName: "Duel",
+      echoId: 7,
+      createdAt: "2023-07-31T23:51:36.1800000Z",
+      echoName: "Neville Longbottom",
+      authorId: 4,
+      authorNickname: "tmant1234",
+      score: 0,
+      userVote: false,
+      isUserDeck: false,
+      magicCardOne: {
+        id: 73,
+        name: "Atmospheric Charm",
+      },
+      magicCardTwo: {
+        id: 68,
+        name: "Spiders",
+      },
+      magicCardThree: {
+        id: 31,
+        name: "Niffler",
+      },
+      magicCardFour: {
+        id: 52,
+        name: "Phoenix",
+      },
+      magicCardFive: {
+        id: 42,
+        name: "Unicorn",
+      },
+      magicCardSix: {
+        id: 20,
+        name: "Confringo",
+      },
+      magicCardSeven: {
+        id: 5,
+        name: "Nebulus",
+      },
+      magicCardEight: {
+        id: 75,
+        name: "Incendio",
+      },
+      companionCardOne: {
+        id: 56,
+        name: "Cassandra Vole",
+      },
+      companionCardTwo: {
+        id: 66,
+        name: "Ron Weasley",
+      },
+      companionCardThree: {
+        id: 65,
+        name: "Frey Twins",
+      },
+    },
+    {
+      id: 68,
+      avgCost: 3.375,
+      code: "APMfAZyt4gTQ8goI1AiOCd4I7gewCIcI5AjqBwPfD9EP1w8=",
+      tierName: "Tier 3",
+      name: "Snape F2P",
+      tagId: 1,
+      tagName: "Solo",
+      categoryId: 8,
+      categoryName: "Duel",
+      echoId: 3,
+      createdAt: "2023-07-31T23:52:52.8266667Z",
+      echoName: "Severus Snape",
+      authorId: 4,
+      authorNickname: "tmant1234",
+      score: 0,
+      userVote: false,
+      isUserDeck: false,
+      magicCardOne: {
+        id: 1,
+        name: "Prior Incantato",
+      },
+      magicCardTwo: {
+        id: 31,
+        name: "Niffler",
+      },
+      magicCardThree: {
+        id: 5,
+        name: "Nebulus",
+      },
+      magicCardFour: {
+        id: 14,
+        name: "Ventus",
+      },
+      magicCardFive: {
+        id: 10,
+        name: "Essence of Dittany",
+      },
+      magicCardSix: {
+        id: 20,
+        name: "Confringo",
+      },
+      magicCardSeven: {
+        id: 23,
+        name: "Time-Turner",
+      },
+      magicCardEight: {
+        id: 48,
+        name: "Piertotum Locomotor",
+      },
+      companionCardOne: {
+        id: 65,
+        name: "Frey Twins",
+      },
+      companionCardTwo: {
+        id: 56,
+        name: "Cassandra Vole",
+      },
+      companionCardThree: {
+        id: 60,
+        name: "Kevin Farrell",
+      },
+    },
+  ],
+};

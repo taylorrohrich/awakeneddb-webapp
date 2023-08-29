@@ -1,5 +1,6 @@
 import { EMPTY_PAGINATION_RESPONSE } from "@/constants/pagination";
 import { API_ROUTES } from "@/constants/routes";
+import { DECKS } from "@/data/decks";
 import { parsePaginationParams } from "@/helpers/parsePaginationParams";
 import { serverFetch } from "@/helpers/serverFetch";
 import {
@@ -7,33 +8,17 @@ import {
   DeckListGetRequest,
   DeckListGetResponse,
 } from "@/types/api/deck";
-import { Deck } from "@/types/deck";
-import { isNil, omitBy } from "lodash";
 
-export async function getDeckList({
-  page,
-  limit,
-  ...otherParams
-}: DeckListGetRequest): Promise<DeckListGetResponse> {
-  const [parsedPage, parsedLimit] = parsePaginationParams(page, limit);
-  const definedParams = omitBy(otherParams, isNil);
-  const searchParams = new URLSearchParams({
-    ...definedParams,
-    page: parsedPage,
-    limit: parsedLimit,
-  });
-
-  const response = await serverFetch<DeckListGetResponse>(
-    `${API_ROUTES.deckListGet}?${searchParams}`
-  );
-  return (
-    response ?? {
-      ...EMPTY_PAGINATION_RESPONSE,
-      duration: 7,
-      costLow: 1,
-      costHigh: 9,
-    }
-  );
+export async function getDeckList(): Promise<DeckListGetResponse> {
+  return {
+    duration: 7,
+    costLow: 1,
+    costHigh: 9,
+    data: DECKS,
+    page: 0,
+    limit: 200,
+    total: DECKS.length,
+  };
 }
 
 export async function getProfileDeckList({
@@ -84,5 +69,5 @@ export async function getUserDeckList({
 }
 
 export async function getDeck({ deckId }: DeckGetRequest) {
-  return serverFetch<Deck>(API_ROUTES.deckGet(deckId));
+  return DECKS.find((d) => d.id == deckId);
 }

@@ -342,7 +342,7 @@ export function Deckbuilder({
           </div>
         </>
       )}
-      {!state.inProgress && mode === "deckbuilder" && (
+      {/* {!state.inProgress && mode === "deckbuilder" && (
         <div className="flex gap-3">
           <LinkButton href={saveDeckRoute}>Save Deck</LinkButton>
           <Button
@@ -353,7 +353,7 @@ export function Deckbuilder({
             <FontAwesomeIcon className="font-md" icon={faCopy} /> Copy
           </Button>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
