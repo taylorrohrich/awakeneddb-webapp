@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { getDeckList } from "@/services/server/deck";
 import { SearchParams } from "@/types/searchParams";
 import { DeckSearch } from "@/components/DeckSearch";

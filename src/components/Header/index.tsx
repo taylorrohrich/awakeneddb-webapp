@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ROUTES } from "@/constants/routes";
 import { getSession } from "@auth0/nextjs-auth0";
 import Link from "next/link";

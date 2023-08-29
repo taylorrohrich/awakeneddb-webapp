@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { ROUTES } from "@/constants/routes";
 import { DeckMetadata } from "@/types/deckMetadata";
 import Link from "next/link";

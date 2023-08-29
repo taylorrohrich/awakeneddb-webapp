@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { DeckMetadata } from "@/types/deckMetadata";
 import { PaginationNavigation } from "../PaginationNavigation";
 import { Deck } from "../Deck";

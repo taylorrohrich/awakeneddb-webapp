@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { API_ROUTES } from "@/constants/routes";
 import { TAGS } from "@/data/tags";
 import { serverFetch } from "@/helpers/serverFetch";
