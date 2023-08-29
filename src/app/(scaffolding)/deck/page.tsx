@@ -26,7 +26,7 @@ export default async function Page({
   const selectedParams = { page, limit, duration, tagId, costLow, costHigh };
   const searchKey = JSON.stringify(selectedParams);
 
-  const result = await getDeckList(selectedParams);
+  const result = await getDeckList();
   const tags = await getTagList();
 
   return (

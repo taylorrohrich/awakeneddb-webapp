@@ -1,6 +1,6 @@
 import { PostGetResponse } from "@/types/api/post";
 
-export const POST: PostGetResponse = {
+export const POST = {
   id: 1,
   name: "Tier List",
   createdAt: "2023-07-30T00:00:00.000Z",
@@ -510,4 +510,4 @@ export const POST: PostGetResponse = {
       },
     },
   ],
-};
+} as PostGetResponse;
